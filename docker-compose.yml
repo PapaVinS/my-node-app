@@ -1,0 +1,14 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    image: node-app:latest
+    container_name: node-app
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - NODE_ENV=staging
+      - API_KEY=${API_KEY}
+    restart: unless-stopped

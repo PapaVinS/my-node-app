@@ -1,0 +1,32 @@
+name: Node.js Docker CI/CD
+
+on:
+  push:
+    branches: [ staging ]
+
+jobs:
+  build-and-run:
+    runs-on: self-hosted
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        
+      - name: Set up Docker Compose
+        run: |
+          # Ensure docker-compose is available
+          docker-compose --version
+      
+      - name: Run with Docker Compose
+        run: |
+          docker-compose up -d
+        env:
+          # Secrets key here if needed
+          API_KEY: ${{ secrets.API_KEY }}
+      
+      - name: Display logs
+        run: |
+          # Wait for app to start
+          sleep 5
+          # Show logs
+          docker-compose logs app
