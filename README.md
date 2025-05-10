@@ -52,7 +52,7 @@ jobs:
           # Wait for app to start
           sleep 5
           # Show logs
-          docker-compose logs app
+          docker compose logs app
 ```
 
 ## Assumptions
